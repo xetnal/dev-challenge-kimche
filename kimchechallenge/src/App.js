@@ -1,17 +1,30 @@
 import React, { useState } from "react";
 import "./App.css";
-import ApolloClient from "apollo-boost";
-import { ApolloProvider } from "@apollo/react-hooks";
+import ApolloClient, {gql} from "apollo-boost";
+import { ApolloProvider   } from "@apollo/react-hooks";
 import { FaSearch } from 'react-icons/fa';
+
 const client = new ApolloClient({
-  uri: "https://48p1r2roz4.sse.codesandbox.io",
+  uri: "https://countries.trevorblades.com/",
 });
 
 const App = () => {
 
-
   const  [selectedCountry, setSelectedCountry]  = useState("")
-
+  
+  const GET_COUNTRIES = 
+  client 
+    .query({
+      query:  gql `
+      query{
+        countries{
+          name
+        }
+      }
+      `
+    }).then( res => console.log(res))
+ 
+  
 
   return (
 
