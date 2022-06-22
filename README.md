@@ -1,6 +1,6 @@
 # Desafío para Software Engineers
 
-Nombre postulante: [TU NOMBRE]
+Nombre postulante: [Santiago de Aguirre]
 Link a la app en producción: [LINK DEL DEPLOY]
 
 ## Instrucciones
