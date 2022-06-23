@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.css';
-import { ApolloProvider, useQuery } from "@apollo/react-hooks";
+import { ApolloProvider} from "@apollo/react-hooks";
 
 import ApolloClient, { gql } from "apollo-boost";
 
