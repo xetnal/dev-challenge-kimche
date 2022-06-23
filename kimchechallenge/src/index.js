@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.css';
 import { ApolloProvider} from "@apollo/react-hooks";
 
-import ApolloClient, { gql } from "apollo-boost";
+import ApolloClient from "apollo-boost";
 
 
 const client = new ApolloClient({

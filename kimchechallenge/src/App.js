@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import "./App.css";
 import ApolloClient, { gql } from "apollo-boost";
 import { ApolloProvider, useQuery } from "@apollo/react-hooks";
-import { FaSearch } from 'react-icons/fa';
-import { CountryList } from "./components/countryList";
+// import { FaSearch } from 'react-icons/fa';
+
 import _ from "lodash"
 const client = new ApolloClient({
   uri: "https://countries.trevorblades.com/",
@@ -31,7 +31,7 @@ const App = () => {
         }
       }
       `
- 
+
 
 
   const { loading, error, data } = useQuery(GET_COUNTRIES)
@@ -40,18 +40,17 @@ const App = () => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>ERROR</p>;
   if (!data) return <p>Not found</p>;
-  let group = data.countries.reduce((r, a) => {
-    // console.log("a", a);
-    // console.log('r', r);
-    r[a.make] = [...r[a.make] || [], a];
-    return r;
-   }, {});
-   console.log("group", group);
 
-  const groupedByContinent = _.groupBy(data.countries, ({continent}) =>continent.name)
-  const groupedByLanguages = _.groupBy(data.countries, ({languages}) =>[languages.name])
+
+  const groupedByContinent = _.groupBy(data.countries, ({ continent }) => continent.name)
+  // const continents = Object.keys(groupedByContinent)
+  const groupedByLanguages = _.groupBy(data.countries, ({ languages }) => [languages.name])
   console.log(groupedByContinent)
-  console.log(groupedByLanguages)
+  console.log(Object.values(groupedByContinent))
+  console.log(Object.entries(groupedByContinent))
+  console.log(groupedByContinent.Africa)
+
+  // console.log(groupedByLanguages)
   return (
 
     <ApolloProvider client={client}>
@@ -71,27 +70,37 @@ const App = () => {
             (e) => setSelectedCountry(e.target.value)
           }
         />
-        <h4 className="my-3 ">
-          Countries:
-        </h4>
+        {
+
+        }
         {data.countries.map((country) => {
           if (selectedCountry === "") return
-          else if 
-          (country.name.toLowerCase().includes(selectedCountry)) {
+          else if (country.name.toLowerCase().includes(selectedCountry)) {
 
-            return <div className="card" key={country.code}>
-              <div className="card-body">
-                <h5 className="card-title"><span>{country.emoji} </span>{country.name}</h5>
-                <h6 className="card-subtitle mb-2 ">Capital: {country.capital}</h6>
-                <h6 className="card-subtitle mb-2 ">Currency: {country.currency}</h6>
+            return <><h1>{country.continent.name}</h1>
+              <div className="card my-3" key={country.code}>
+                <div className="card-body">
+                  <h5 className="card-title"><span>{country.emoji} </span>{country.name}</h5>
+                  <h6 className="card-subtitle mb-2 ">Capital: {country.capital}</h6>
+                  <h6 className="card-subtitle mb-2 ">Currency: {country.currency}</h6>
 
 
 
+                </div>
               </div>
-            </div>
-          } else if (selectedCountry === "") return ""
+            </>
+          }
         })}
+        {/* {Object.values(groupedByContinent).map((continents, i) => {
+          console.log(continents)
+          console.log(i)
+          if (selectedCountry === "") return
+          else if (.includes(selectedCountry))
+            return <h2>{continents[0].continent.name}</h2>
+
+        })} */}
       </div>
+      {/* <div>{Object.keys(groupedByContinent).map((continent) => {console.log(typeof(continent))})}</div> */}
     </ApolloProvider>
   )
 };
