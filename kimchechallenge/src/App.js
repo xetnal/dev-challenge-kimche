@@ -33,7 +33,7 @@ const App = () => {
   // console.log(groupedByLanguages)
   return (
     <ApolloProvider client={client}>
-      <div className="container mx-auto">
+      <div className="animate__animated animate__fadeIn container mx-auto">
         <h2 className="text-center my-3">
           Country Search
         </h2>
@@ -41,27 +41,29 @@ const App = () => {
           type="text"
           name="country"
           id="country"
-          className="form-control"
+          className="form-control rounded"
           value={selectedCountry}
           placeholder="Search for a country"
           onChange={
             (e) => setSelectedCountry(e.target.value)
           }
         />
-        <button className={currentFilter === FILTER_TYPE.CONTINENT ? 'active btn btn-primary' : 'btn btn-secondary'} onClick={() => setFilter(FILTER_TYPE.CONTINENT)}>Group By Continent</button>
-        <button className={currentFilter === FILTER_TYPE.LANGUAGE ? 'active btn btn-primary' : 'btn btn-secondary'} onClick={() => setFilter(FILTER_TYPE.LANGUAGE)}>Group By Language</button>
+        <div className="my-3">
+          <button className={currentFilter === FILTER_TYPE.CONTINENT ? 'active btn btn-primary' : 'btn btn-secondary'} onClick={() => setFilter(FILTER_TYPE.CONTINENT)}>Group By Continent</button>
+          <button className={currentFilter === FILTER_TYPE.LANGUAGE ? 'active btn btn-primary mx-3' : 'btn btn-secondary mx-3'} onClick={() => setFilter(FILTER_TYPE.LANGUAGE)}>Group By Language</button>
+        </div>
         {
           groupedData[currentFilter].map((entry, i) => {
             if (selectedCountry === "") return <></>;
-            try{
+            try {
               const mappedCountries = entry[1].filter((country) => country.name.toLowerCase().includes(selectedCountry));
               if (mappedCountries?.length > 0) {
-                return <><h1>{entry[0]}</h1>
+                return <><h1 className="animate__animated animate__fadeInRight">{entry[0]}</h1>
                   {mappedCountries.map((country) => {
 
                     return (
 
-                      <div className="card my-3" key={country.code}>
+                      <div className="animate__animated animate__fadeInRight card my-3" key={country.code}>
                         <div className="card-body">
                           <h5 className="card-title"><span>{country.emoji} </span>{country.name}</h5>
                           <h6 className="card-subtitle mb-2 ">Capital: {country.capital}</h6>
@@ -73,7 +75,7 @@ const App = () => {
 
 
                 </>
-              } 
+              }
             } catch (error) {
               return <h1>Whoops! There has been an error!</h1>
             }
