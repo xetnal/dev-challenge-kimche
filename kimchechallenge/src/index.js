@@ -4,10 +4,19 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.css';
+import { ApolloProvider} from "@apollo/react-hooks";
+import 'animate.css';
+import ApolloClient from "apollo-boost";
+
+
+const client = new ApolloClient({
+  uri: "https://countries.trevorblades.com/",
+});
 ReactDOM.render(
-  <React.StrictMode>
+  <ApolloProvider client={client}>
     <App />
-  </React.StrictMode>,
+  </ApolloProvider>
+  ,
   document.getElementById('root')
 );
 
