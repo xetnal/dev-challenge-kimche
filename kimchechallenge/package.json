@@ -1,7 +1,7 @@
 {
   "name": "kimchechallenge",
   "version": "0.1.0",
-  "homepage": "https://xetnal.github.io/kimchechallenge",
+  "homepage": "https://dev-challenge-kimche-hkcasnmhk-xetnal.vercel.app/",
   "private": true,
   "dependencies": {
     "@apollo/react-hooks": "^3.1.5",
