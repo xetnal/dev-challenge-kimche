@@ -1,7 +1,7 @@
 # Desafío para Software Engineers
 
-Nombre postulante: [Santiago de Aguirre]
-Link a la app en producción: [LINK DEL DEPLOY]
+Nombre postulante: Santiago de Aguirre
+Link a la app en producción: https://dev-challenge-kimche.vercel.app/
 
 ## Instrucciones
 
