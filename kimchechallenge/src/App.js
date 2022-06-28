@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import ApolloClient from "apollo-boost";
 import { ApolloProvider, useQuery } from "@apollo/react-hooks";
-// import { FaSearch } from 'react-icons/fa';
 import _ from "lodash"
 import { GET_COUNTRIES, FILTER_TYPE } from "./App.model";
 
@@ -29,8 +28,7 @@ const App = () => {
     [FILTER_TYPE.CONTINENT]: entriesByContinent,
     [FILTER_TYPE.LANGUAGE]: entriesByLanguage,
   };
-  console.log(groupedData)
-  // console.log(groupedByLanguages)
+
   return (
     <ApolloProvider client={client}>
       <div className="animate__animated animate__fadeIn container mx-auto">
