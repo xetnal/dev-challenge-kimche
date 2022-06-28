@@ -37,3 +37,14 @@ Acá van algunas cosas que pueden ser útiles (o no 👀):
 - [Eslint](https://eslint.org/)
 - [Eslint airbnb](https://www.npmjs.com/package/eslint-config-airbnb)
 - [Husky](https://www.npmjs.com/package/husky)
+
+## Respuesta a la pregunta abierta
+
+Pregunta:
+"La tabla que contiene la información correspondiente a la asistencia diaria de un niño en un colegio tiene 90 millones de filas. Todas las tablas del sistema existen en la misma BDD en MySQL. La lógica del backend que actualiza la información correspondiente al pasar la asistencia tiene un tiempo de servicio p95 de 10 segundos. El equipo está interesado en bajar este tiempo para mejorar la experiencia del usuario (y porque nos gusta pensar en Kimche como un Ferrari). ¿Qué propondrías para enfrentar el problema? Esta pregunta es abierta, no hay respuestas malas. Puedes proponer arquitectura, tecnologías, diseño, etc."
+
+Respuesta:
+Las soluciones a este problema pueden ser diversas. Se podría revisar la estructura misma de la BDD y optimizar las tablas que contienen la información necesaria, ya sea mejorando las queries que necesitamos o viendo la posibilidad de crear tablas más pequeñas por colegio, por ejemplo. 
+De todas maneras, al usar una BDD relacional, nos encontramos con el problema de que las tablas crecen verticalmente demasiado y las queries, al revisar esa tabla, se pueden demorar mucho, como es el caso de la asistencia. Por lo mismo, otra posible solución seria en lugar de usar una base de datos relacional como MySQL, podríamos usar una base de datos no relacional como MongoDB. MongoDB se caracteriza por su habilidad de manejar grandes cantidades de datos y su estructura es menos rigida que MySQL. Una de las ventajas de esta tecnología es que divide las BDD muy grandes en BDDs más pequeñas y rápidas, mejorando la velocidad de las queries. 
+
+De todas maneras hay varias preguntas que hacerse al enfrentarse al problema: ¿Queremos mantener la estructura relacional de nuestra BDD? ¿Estamos trabajando con data estática?. Si la respuesta a esas preguntas son no, entonces recomendaría implementar una base de datos no relacional, para mayor eficiencia y rapidez.
